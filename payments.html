@@ -41,7 +41,24 @@
                         {
                             const privateKey = 'L2Xkd8cTUfMHkVArWxJJmHLPmzCc4jBamxhauwApGSRBjftzVXzz';
                             datapay.send({
-                            data: ['1DTJ6tzD99TKuKH7nTnQhKSd6jLYf7h1a4', '{ name: ' + document.getElementById('name').value + ', pay_id: ' + document.getElementById('pay_id').value + ', address1: ' + document.getElementById('address1').value + ', address2: ' + document.getElementById('address2').value + ', suburb: ' + document.getElementById('suburb').value + ', state : ' + document.getElementById('state').value + '}'],
+                            data: ['1DTJ6tzD99TKuKH7nTnQhKSd6jLYf7h1a4', '{<Document xmlns:xsd=\'http://www.w3.org/2001/XMLSchema\' xmlns:xsi=\'http://www.w3.org/2001/XMLSchema-instance\' xmlns=\'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03\'>'
+    + '<CstmrCdtTrfInitn><GrpHdr><MsgId>1234567890</MsgId><CreDtTm>2020-08-06T13:48:19</CreDtTm><NbOfTxs>1</NbOfTxs><CtrlSum>57.95</CtrlSum><InitgPty><Nm>' + document.getElementById('name').value + '</Nm></InitgPty></GrpHdr>'
+    + '<PmtInf>'
+        + '<PmtInfId>1000056789</PmtInfId><PmtMtd>TRF</PmtMtd><NbOfTxs>1</NbOfTxs><CtrlSum>57.95</CtrlSum><PmtTpInf><InstrPrty>NORM</InstrPrty><SvcLvl><Cd>NURG</Cd></SvcLvl></PmtTpInf>'
+        + '<ReqdExctnDt>2020-08-06</ReqdExctnDt>'
+        + '<Dbtr><Nm>' + document.getElementById('name').value + '</Nm><PstlAdr><StrtNm>' + document.getElementById('address1').value + ' ' + document.getElementById('address2').value + '</StrtNm><TwnNm>' + document.getElementById('suburb').value + '</TwnNm><CtrySubDvsn>' + document.getElementById('state').value + '</CtrySubDvsn><Ctry>AU</Ctry><AdrLine></AdrLine></PstlAdr><CtryOfRes>AU</CtryOfRes></Dbtr>'
+        + '<DbtrAcct><Id><Othr><Id>' + document.getElementById('pay_id').value + '</Id></Othr></Id><Ccy>AUD</Ccy></DbtrAcct>'
+        + '<DbtrAgt><FinInstnId><BIC>TESTFIAU01</BIC><ClrSysMmbId><MmbId>987-001</MmbId></ClrSysMmbId><PstlAdr><Ctry>AU</Ctry></PstlAdr></FinInstnId><BrnchId><Id>10 George Street</Id></BrnchId></DbtrAgt>'
+        + '<CdtTrfTxInf>'
+            + '<PmtId><InstrId>01-210045000139362020</InstrId><EndToEndId>210045000139362020</EndToEndId></PmtId><Amt><InstdAmt Ccy=\'AUD\'>57.95</InstdAmt></Amt><XchgRateInf><XchgRate>1.00000</XchgRate></XchgRateInf>'
+            + '<CdtrAgt><FinInstnId><ClrSysMmbId><MmbId>987-001</MmbId></ClrSysMmbId><Nm>WBC</Nm><PstlAdr><Ctry>AU</Ctry></PstlAdr></FinInstnId><BrnchId><Id>East Melbourne</Id></BrnchId></CdtrAgt>'
+            + '<Cdtr><Nm>ORWELLS BOOKSHOP</Nm><PstlAdr><PstCd>3002</PstCd><TwnNm>East Melbourne</TwnNm><CtrySubDvsn>Aus</CtrySubDvsn><Ctry>AU</Ctry></PstlAdr><Id><OrgId><Othr><Id>ORWELLS BOOKSHOP-0000000001</Id></Othr></OrgId></Id></Cdtr>'
+            + '<CdtrAcct><Id><Othr><Id>123465</Id></Othr></Id><Nm>ORWELLS BOOKSHOP</Nm></CdtrAcct>'
+            + '<Tax><Dbtr><TaxId>40069396792</TaxId></Dbtr><RefNb>NSAG_REIMB</RefNb><Dt>2020-08-06</Dt><Rcrd><Tp>WHT</Tp><TaxAmt><TaxblBaseAmt Ccy=\'AUD\'>0.00</TaxblBaseAmt><TtlAmt Ccy=\'AUD\'>0.00</TtlAmt></TaxAmt></Rcrd></Tax>'
+            + '</CdtTrfTxInf>'
+            + '</PmtInf>'
+            + '</CstmrCdtTrfInitn>'
+            + '</Document>}'],
                             pay: { key: privateKey, rpc: 'https://api.mattercloud.net', feeb: .3 }
                             }, function(err, res) {
                             alert(res);
